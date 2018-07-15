@@ -6,7 +6,6 @@ import random
 import math
 
 class SearchTimeout(Exception):
-    """Subclass base exception for code clarity. """
     pass
 
 

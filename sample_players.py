@@ -1,34 +1,10 @@
 """This file contains a collection of player classes for comparison with your
-own agent and example heuristic functions.
-
-    ************************************************************************
-    ***********  YOU DO NOT NEED TO MODIFY ANYTHING IN THIS FILE  **********
-    ************************************************************************
-"""
+own agent and example heuristic functions."""
 
 from random import randint
 
 
 def null_score(game, player):
-    """This heuristic presumes no knowledge for non-terminal states, and
-    returns the same uninformative value for all other states.
-
-    Parameters
-    ----------
-    game : `isolation.Board`
-        An instance of `isolation.Board` encoding the current state of the
-        game (e.g., player locations and blocked cells).
-
-    player : hashable
-        One of the objects registered by the game object as a valid player.
-        (i.e., `player` should be either game.__player_1__ or
-        game.__player_2__).
-
-    Returns
-    ----------
-    float
-        The heuristic value of the current game state.
-    """
 
     if game.is_loser(player):
         return float("-inf")
@@ -137,25 +113,6 @@ class RandomPlayer():
     """Player that chooses a move randomly."""
 
     def get_move(self, game, time_left):
-        """Randomly select a move from the available legal moves.
-
-        Parameters
-        ----------
-        game : `isolation.Board`
-            An instance of `isolation.Board` encoding the current state of the
-            game (e.g., player locations and blocked cells).
-
-        time_left : callable
-            A function that returns the number of milliseconds left in the
-            current turn. Returning with any less than 0 ms remaining forfeits
-            the game.
-
-        Returns
-        ----------
-        (int, int)
-            A randomly selected legal move; may return (-1, -1) if there are
-            no available legal moves.
-        """
         legal_moves = game.get_legal_moves()
         if not legal_moves:
             return (-1, -1)
@@ -171,27 +128,6 @@ class GreedyPlayer():
         self.score = score_fn
 
     def get_move(self, game, time_left):
-        """Select the move from the available legal moves with the highest
-        heuristic score.
-
-        Parameters
-        ----------
-        game : `isolation.Board`
-            An instance of `isolation.Board` encoding the current state of the
-            game (e.g., player locations and blocked cells).
-
-        time_left : callable
-            A function that returns the number of milliseconds left in the
-            current turn. Returning with any less than 0 ms remaining forfeits
-            the game.
-
-        Returns
-        ----------
-        (int, int)
-            The move in the legal moves list with the highest heuristic score
-            for the current game state; may return (-1, -1) if there are no
-            legal moves.
-        """
         legal_moves = game.get_legal_moves()
         if not legal_moves:
             return (-1, -1)
@@ -203,33 +139,6 @@ class HumanPlayer():
     """Player that chooses a move according to user's input."""
 
     def get_move(self, game, time_left):
-        """
-        Select a move from the available legal moves based on user input at the
-        terminal.
-
-        **********************************************************************
-        NOTE: If testing with this player, remember to disable move timeout in
-              the call to `Board.play()`.
-        **********************************************************************
-
-        Parameters
-        ----------
-        game : `isolation.Board`
-            An instance of `isolation.Board` encoding the current state of the
-            game (e.g., player locations and blocked cells).
-
-        time_left : callable
-            A function that returns the number of milliseconds left in the
-            current turn. Returning with any less than 0 ms remaining forfeits
-            the game.
-
-        Returns
-        ----------
-        (int, int)
-            The move in the legal moves list selected by the user through the
-            terminal prompt; automatically return (-1, -1) if there are no
-            legal moves
-        """
         legal_moves = game.get_legal_moves()
         if not legal_moves:
             return (-1, -1)
